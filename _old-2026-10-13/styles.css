@@ -1,0 +1,441 @@
+/* Japan trip — Hooman and Parastou. White page, sans-serif. */
+:root {
+  --ink: #16181d;
+  --muted: #5c6570;
+  --line: #e2e6eb;
+  --line-strong: #16181d;
+  --panel: #f6f7f9;
+  --persimmon: #a33b2b;
+  --indigo: #1e2c45;
+  --moss: #234237;
+  --tokyo: #1e2c45;
+  --kyoto: #2d4a3c;
+  --osaka: #8d3a2c;
+  --lax: #6e5138;
+  --accent: var(--ink);
+  --sans: "Avenir Next", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --measure: 44rem;
+}
+body.city-tokyo { --accent: var(--tokyo); }
+body.city-kyoto { --accent: var(--kyoto); }
+body.city-osaka { --accent: var(--osaka); }
+body.city-lax { --accent: var(--lax); }
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #ffffff;
+  font: 16px/1.55 var(--sans);
+  overflow-wrap: break-word;
+}
+a { color: var(--indigo); }
+a:hover { color: var(--persimmon); }
+a:focus-visible { outline: 2px solid var(--indigo); outline-offset: 3px; }
+h1, h2, h3 { font-family: var(--sans); }
+
+/* Vertical page label, only where the margin is wide enough for it. */
+.spine {
+  position: fixed;
+  left: 22px;
+  bottom: 28px;
+  margin: 0;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.wrap { width: min(960px, calc(100% - 40px)); margin: 0 auto; }
+
+/* ---------- Site header and day links ---------- */
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px 20px;
+  padding: 22px 0 14px;
+  border-bottom: 1px solid var(--line-strong);
+}
+.brand {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--ink);
+  text-decoration: none;
+}
+.brand small {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.top nav { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 14px; }
+.top nav a { color: var(--ink); text-decoration: none; }
+.top nav a:hover { color: var(--persimmon); text-decoration: underline; }
+
+.dayscroll {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 2px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.dayscroll a {
+  flex: 0 0 auto;
+  padding: 5px 8px;
+  border-radius: 999px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+.dayscroll a:hover { background: var(--panel); color: var(--ink); }
+.dayscroll a[aria-current="page"] { background: var(--accent); color: #ffffff; }
+
+/* ---------- Overview hero and sections ---------- */
+.hero { padding: 40px 0 12px; }
+.eyebrow {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--persimmon);
+}
+h1 {
+  margin: 0;
+  font-weight: 600;
+  font-size: clamp(46px, 7vw, 88px);
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+}
+.dek { max-width: 40rem; margin: 22px 0 0; font-size: 20px; line-height: 1.5; }
+.lede { max-width: var(--measure); margin: 0 0 18px; color: var(--muted); }
+.rule { border: 0; border-top: 1px solid var(--line-strong); margin: 44px 0 28px; }
+h2.sec {
+  margin: 0 0 10px;
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+/* Booking cards */
+.bookgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.sheet {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 16px 18px;
+  min-width: 0;
+}
+.sheet.span2 { grid-column: 1 / -1; }
+.flag {
+  margin: 0 0 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.flag.booked { color: var(--moss); }
+.flag.not { color: var(--persimmon); }
+.stay-name, .sheet h3 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.sheet p, .stay p, .movement p { margin: 0 0 8px; }
+.sheet p:last-child, .stay p:last-child, .movement p:last-child { margin-bottom: 0; }
+
+/* Day list on the overview */
+.daylink {
+  display: grid;
+  grid-template-columns: 5.5rem 7.5rem minmax(0, 1fr) auto;
+  gap: 4px 16px;
+  align-items: baseline;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+  color: inherit;
+  text-decoration: none;
+}
+.daylink:last-of-type { border-bottom: 1px solid var(--line); }
+.daylink:hover { background: var(--panel); color: inherit; }
+.daylink .d {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.daylink .c {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.c-tokyo { color: var(--tokyo); }
+.c-kyoto { color: var(--kyoto); }
+.c-osaka { color: var(--osaka); }
+.c-lax { color: var(--lax); }
+.daylink .go {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--persimmon);
+}
+
+/* City sub-heads in the overview sightseeing list */
+.sightcity {
+  margin: 30px 0 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.sightnote { max-width: var(--measure); margin: 0 0 8px; color: var(--muted); font-size: 15px; }
+
+/* Honest flags */
+.holes { margin: 0; padding: 0; list-style: none; max-width: var(--measure); }
+.holes li { padding: 12px 0; border-top: 1px solid var(--line); }
+.holes li:last-child { border-bottom: 1px solid var(--line); }
+
+/* Food ranking */
+.rank { margin: 0; padding: 0; list-style: none; counter-reset: food; }
+.rank li {
+  counter-increment: food;
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: 12px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+}
+.rank li:last-child { border-bottom: 1px solid var(--line); }
+.rank li::before {
+  content: counter(food, decimal-leading-zero);
+  padding-top: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.rank li > div { min-width: 0; max-width: var(--measure); }
+.rank p { margin: 6px 0 0; font-size: 15px; line-height: 1.55; color: var(--ink); }
+.score {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+/* ---------- Day page head ---------- */
+.cityhead { padding: 36px 0 0; }
+.cityhead .city {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.cityhead h1 { font-size: clamp(44px, 6vw, 72px); line-height: 1; }
+.subdate {
+  margin: 10px 0 0;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Hotel and transport cards */
+.stay, .movement {
+  max-width: var(--measure);
+  margin-top: 14px;
+  padding: 16px 18px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--accent);
+  border-radius: 0 0 6px 6px;
+}
+.cityhead + .stay, .cityhead + .movement { margin-top: 26px; }
+.daylede {
+  max-width: 40rem;
+  margin: 30px 0 0;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+/* ---------- Day timeline (day pages) and sightseeing list (overview) ---------- */
+.timeline, .dayplan { list-style: none; margin: 26px 0 36px; padding: 0; }
+.dayplan { margin: 10px 0 8px; }
+.timeline > li, .dayplan > li {
+  display: grid;
+  grid-template-columns: 8rem minmax(0, 1fr);
+  column-gap: 24px;
+  padding: 20px 0;
+  border-top: 1px solid var(--line);
+}
+.timeline > li:first-child, .dayplan > li:first-child { border-top-color: var(--line-strong); }
+.dayplan > li { grid-template-columns: 10rem minmax(0, 1fr); }
+.timeline time, .dayplan time {
+  padding-top: 2px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.timeline li > div, .dayplan .row { min-width: 0; max-width: var(--measure); }
+
+/* Place name: the most prominent line */
+.timeline .stop {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+}
+/* Kind: small muted tag above the name */
+.timeline .kind, .dayplan .spot-kind {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 0 6px;
+  padding: 1px 7px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--panel);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+/* Scores: small and muted, on their own line under the name */
+.timeline .scores, .dayplan .scores {
+  display: block;
+  margin: 4px 0 0;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.5;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+/* What to do: normal body text */
+.timeline .do, .dayplan .spot-do {
+  margin: 8px 0 0;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.55;
+  color: var(--ink);
+}
+/* Backup: visibly secondary */
+.timeline .backup, .dayplan .backup {
+  margin: 10px 0 0;
+  padding: 1px 0 1px 12px;
+  border-left: 2px solid var(--line);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.timeline .kind:empty, .timeline .scores:empty, .timeline .do:empty, .timeline .backup:empty,
+.dayplan .spot-kind:empty, .dayplan .spot-do:empty, .dayplan .scores:empty, .dayplan .backup:empty,
+.dayplan .src:empty { display: none; }
+
+/* Overview sightseeing rows: same order and look as a day-page row,
+   kind tag, name, scores, do line, backup. */
+.dayplan .row { display: flex; flex-direction: column; align-items: flex-start; }
+.dayplan .row > * { max-width: 100%; }
+.dayplan .place { display: contents; }
+.dayplan .spot-kind { order: 1; }
+.dayplan .place-name {
+  order: 2;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+}
+.dayplan .scores { order: 3; display: flex; flex-wrap: wrap; gap: 0 10px; }
+.dayplan .spot-do { order: 4; display: block; }
+.dayplan .backup { order: 5; }
+
+/* ---------- Pager and footer ---------- */
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 0;
+  border-top: 1px solid var(--line-strong);
+  font-size: 15px;
+  font-weight: 600;
+}
+.pager a { color: var(--ink); text-decoration: none; }
+.pager a:hover { color: var(--persimmon); text-decoration: underline; }
+footer.site {
+  max-width: var(--measure);
+  margin-top: 8px;
+  padding: 18px 0 44px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.rank + footer.site, .holes + footer.site { margin-top: 36px; }
+footer.site p { margin: 0; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1099px) {
+  .spine { display: none; }
+}
+@media (max-width: 800px) {
+  .bookgrid { grid-template-columns: 1fr; }
+  .sheet.span2 { grid-column: auto; }
+  .daylink { grid-template-columns: auto minmax(0, 1fr); }
+  .daylink > span:nth-child(3), .daylink .go { grid-column: 1 / -1; }
+}
+@media (max-width: 640px) {
+  .wrap { width: calc(100% - 32px); }
+  .top { padding-top: 18px; }
+  .hero { padding-top: 28px; }
+  .dek { font-size: 18px; }
+  h2.sec { font-size: 26px; }
+  .rule { margin: 36px 0 22px; }
+  .cityhead { padding-top: 26px; }
+  .daylede { font-size: 18px; margin-top: 24px; }
+  .stay, .movement, .sheet { padding: 14px 16px; }
+  .stay-name, .sheet h3 { font-size: 20px; }
+  .rank li { grid-template-columns: 2.2rem minmax(0, 1fr); gap: 8px; }
+  .score { font-size: 17px; }
+
+  /* Time sits above the stop as a small label. */
+  .timeline > li, .dayplan > li { grid-template-columns: minmax(0, 1fr); row-gap: 6px; padding: 16px 0 18px; }
+  .timeline time, .dayplan time {
+    padding-top: 0;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .timeline .stop, .dayplan .place-name { font-size: 18px; }
+}

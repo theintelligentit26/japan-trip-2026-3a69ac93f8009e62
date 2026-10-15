@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Japan, Oct 16–28, 2026 — Hooman and Parastou</title>
+<style>
+  :root {
+    --bg: #f4f5f7;
+    --ink: #141414;
+    --muted: #5c616b;
+    --line: #d8dbe2;
+    --card: #ffffff;
+    --accent: #24306e;
+    --soft: #e7eaf5;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16.5px/1.5 "Avenir Next", "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  a { color: var(--accent); }
+  a:hover { text-decoration: none; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 18px; }
+  .mast {
+    padding: 36px 0 22px;
+  }
+  .eyebrow {
+    margin: 0 0 8px;
+    color: var(--accent);
+    font-size: 12px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(48px, 9vw, 84px);
+    line-height: .9;
+    letter-spacing: -0.04em;
+    font-weight: 650;
+  }
+  .dek {
+    max-width: 42rem;
+    margin: 14px 0 0;
+    color: var(--muted);
+    font-size: 16px;
+  }
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: rgba(244, 245, 247, .94);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(10px);
+  }
+  .nav .wrap {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    scrollbar-width: none;
+  }
+  .nav .wrap::-webkit-scrollbar { display: none; }
+  .nav a {
+    flex: 0 0 auto;
+    text-decoration: none;
+    color: var(--ink);
+    border: 1px solid transparent;
+    border-radius: 999px;
+    padding: 6px 11px;
+    font-size: 13px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .nav a:hover { background: var(--soft); }
+  .nav a[aria-current="true"] {
+    background: var(--accent);
+    color: #fff;
+  }
+  main { padding-bottom: 72px; }
+  section {
+    scroll-margin-top: 58px;
+    padding: 34px 0 10px;
+    border-top: 1px solid var(--line);
+  }
+  .kicker {
+    margin: 0 0 6px;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+  h2 {
+    margin: 0 0 8px;
+    font-size: clamp(36px, 6vw, 56px);
+    line-height: .95;
+    letter-spacing: -0.035em;
+    font-weight: 650;
+  }
+  .lede {
+    max-width: 42rem;
+    margin: 0 0 18px;
+    color: var(--muted);
+  }
+  h3.slot {
+    margin: 22px 0 10px;
+    font-size: 13px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    border-top: 3px solid var(--accent);
+    padding: 14px 16px 12px;
+    min-width: 0;
+  }
+  .card.is-empty {
+    background: transparent;
+    border-top-color: var(--line);
+    color: var(--muted);
+  }
+  .role {
+    margin: 0 0 6px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .card.is-empty .role { color: var(--muted); }
+  .card h3, .book h3 {
+    margin: 0 0 6px;
+    font-size: 22px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .why { margin: 0 0 12px; }
+  dl { margin: 0; }
+  dl div {
+    display: grid;
+    grid-template-columns: 7.4rem 1fr;
+    gap: 8px;
+    padding: 7px 0;
+    border-top: 1px solid var(--line);
+    font-size: 14.5px;
+  }
+  dt { color: var(--muted); }
+  dd { margin: 0; }
+  .book {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 14px 16px;
+    margin: 0 0 10px;
+  }
+  .book p { margin: 0; }
+  .when {
+    margin: 0 0 4px;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  ol.rank, ul.sights {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  ol.rank { counter-reset: food; }
+  ol.rank li, ul.sights li {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 12px 14px;
+    margin: 0 0 8px;
+  }
+  ol.rank li { counter-increment: food; }
+  .score {
+    display: block;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  ol.rank li .score::before {
+    content: counter(food) ". ";
+    color: var(--accent);
+  }
+  .empty {
+    margin: 0;
+    padding: 18px 16px;
+    border: 1px dashed var(--line);
+    border-radius: 14px;
+    color: var(--muted);
+    background: transparent;
+  }
+  footer {
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 14px;
+    padding: 18px 0 28px;
+  }
+  @media (max-width: 640px) {
+    dl div { grid-template-columns: 1fr; gap: 2px; }
+    .mast { padding-top: 26px; }
+  }
+</style>
+</head>
+<body>
+<header class="mast">
+  <div class="wrap">
+    <p class="eyebrow">Hooman and Parastou</p>
+    <h1>Japan</h1>
+    <p class="dek">October 16–28, 2026. Tokyo, then Kyoto, then Osaka. Flights and the three hotels stay as booked. A line says unverified when this page’s source did not state it. Source 2 is still open until Google, Jalan, or Tripadvisor’s own page prints both the average and the count. A timeout is not a fail. Food is ranked by the Tabelog average, not the review count.</p>
+  </div>
+</header>
+<nav class="nav" aria-label="Days">
+  <div class="wrap">
+    <a href="#booked">Booked</a>
+    <a href="#d16">Fri 16</a>
+    <a href="#d17">Sat 17</a>
+    <a href="#d18">Sun 18</a>
+    <a href="#d19">Mon 19</a>
+    <a href="#d20">Tue 20</a>
+    <a href="#d21">Wed 21</a>
+    <a href="#d22">Thu 22</a>
+    <a href="#d23">Fri 23</a>
+    <a href="#d24">Sat 24</a>
+    <a href="#d25">Sun 25</a>
+    <a href="#d26">Mon 26</a>
+    <a href="#d27">Tue 27</a>
+    <a href="#d28">Wed 28</a>
+    <a href="#food">Food</a>
+    <a href="#sights">Sights</a>
+    <a href="#snacks">Snacks</a>
+  </div>
+</nav>
+<main>
+  <section id="booked">
+    <div class="wrap">
+      <p class="kicker">Already booked</p>
+      <h2>Flights and hotels</h2>
+      <p class="lede">Booked facts only. Kiyomizu-dera’s regular adult price stays blank.</p>
+      <article class="book">
+        <p class="when">Fri Oct 16</p>
+        <h3>JL15</h3>
+        <p>Economy. LAX 1:40 PM.</p>
+      </article>
+      <article class="book">
+        <p class="when">Sat Oct 17, 5:25 PM</p>
+        <h3>Haneda, then Hotel Sunroute Plaza Shinjuku</h3>
+        <p>Arrive Haneda. Hotel Sunroute Plaza Shinjuku, 2-3-1 Yoyogi. Checkout Thu Oct 22, 11:00 AM.</p>
+      </article>
+      <article class="book">
+        <p class="when">Thu Oct 22</p>
+        <h3>Shinkansen, then The Royal Park Hotel Kyoto Sanjo</h3>
+        <p>Shinkansen to Kyoto. The Royal Park Hotel Kyoto Sanjo, Kawaramachi-Sanjo. Checkout Sun Oct 25.</p>
+      </article>
+      <article class="book">
+        <p class="when">Sun Oct 25, 3:00 PM</p>
+        <h3>Hotel Nikko Osaka</h3>
+        <p>1-3-3 Nishi-Shinsaibashi. Check-in 3:00 PM. Checkout Wed Oct 28, 11:00 AM. Trip reference ZO-AX1088-77283. Paid $555.90.</p>
+      </article>
+      <article class="book">
+        <p class="when">Wed Oct 28</p>
+        <h3>JL60</h3>
+        <p>Leave the hotel by 2:00 PM. No morning sight. Kansai 6:00 PM to LAX 12:15 PM.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="d16" class="day">
+    <div class="wrap">
+      <p class="kicker">Friday · Tokyo departure</p>
+      <h2>Oct 16</h2>
+      <p class="lede">Outbound flight only.</p>
+      <h3 class="slot">Departure</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">Booked</p>
+          <h3>JL15</h3>
+          <p class="why">Economy from LAX.</p>
+          <dl>
+            <div><dt>How long</dt><dd>Unverified</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Economy. LAX 1:40 PM.</dd></div>
+            <div><dt>Rating</dt><dd>Unverified</dd></div>
+          </dl>
+        </article>
+        <article class="card is-empty">
+          <p class="role">Backup</p>
+          <p class="why">No backup has cleared the review bar yet.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="d17" class="day">
+    <div class="wrap">
+      <p class="kicker">Saturday · Tokyo</p>
+      <h2>Oct 17</h2>
+      <p class="lede">Land 5:25 PM. Fuunji closes at 21:00, so it is not the late dinner. Kamo to Negi is inside the JR Shinjuku gates until 23:00 and is the late option, not a south-exit street restaurant. No south-exit street restaurant cleared the bar.</p>
+      <h3 class="slot">Arrival</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">Booked</p>
+          <h3>Haneda, then Hotel Sunroute Plaza Shinjuku</h3>
+          <p class="why">Arrive Haneda at 5:25 PM. Hotel at 2-3-1 Yoyogi. Checkout Thu Oct 22, 11:00 AM.</p>
+          <dl>
+            <div><dt>How long</dt><dd>Unverified</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Hotel already booked. Checkout Thu Oct 22, 11:00 AM.</dd></div>
+            <div><dt>Rating</dt><dd>Unverified</dd></div>
+          </dl>
+        </article>
+        <article class="card is-empty">
+          <p class="role">Backup</p>
+          <p class="why">No backup has cleared the review bar yet.</p>
+        </article>
+      </div>
+      <h3 class="slot">Dinner</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">If still open</p>
+          <h3>Fuunji Shinjuku honten</h3>
+          <p class="why">Hours 11:00–15:00 and 17:00–21:00. Not a late dinner. Only before 21:00.</p>
+          <dl>
+            <div><dt>How long</dt><dd>A bowl</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Unverified</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://tabelog.com/en/tokyo/A1304/A130401/13044091/dtlrvwlst/">Tabelog</a> 3.77 / 5,392. Source 2 still open.</dd></div>
+          </dl>
+        </article>
+        <article class="card is-empty">
+          <p class="role">Backup</p>
+          <p class="why">No backup has cleared the review bar yet.</p>
+        </article>
+      </div>
+      <h3 class="slot">Late fallback</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">Late option</p>
+          <h3>Kamo to Negi Iitorumine</h3>
+          <p class="why">Inside the JR Shinjuku gates. Hours 7:00–23:00, last order 22:30. Not a south-exit street restaurant.</p>
+          <dl>
+            <div><dt>How long</dt><dd>A bowl</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Unverified</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://tabelog.com/en/tokyo/A1304/A130401/13295874/">Tabelog</a> 3.58 / 1,651. Source 2 still open.</dd></div>
+          </dl>
+        </article>
+        <article class="card is-empty">
+          <p class="role">Backup</p>
+          <p class="why">No backup has cleared the review bar yet.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="d18" class="day">
+    <div class="wrap">
+      <p class="kicker">Sunday · Tokyo</p>
+      <h2>Oct 18</h2>
+      <p class="lede">Meiji Jingu in the morning, lunch in Shinjuku, Yoyogi Park in the afternoon.</p>
+      <h3 class="slot">Morning sight</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">First</p>
+          <h3>Meiji Jingu</h3>
+          <p class="why">Free, no reservation. October hours 5:40–16:40.</p>
+          <dl>
+            <div><dt>How long</dt><dd>About 1 hour for the shrine</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Free, no reservation</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://www.japan-guide.com/e/e3002.html">Japan Guide</a> 4.1 (2,779). Source 2 still open.</dd></div>
+          </dl>
+        </article>
+        <article class="card is-empty">
+          <p class="role">Backup</p>
+          <p class="why">No backup has cleared the review bar yet.</p>
+        </article>
+      </div>
+      <h3 class="slot">Lunch</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">First</p>
+          <h3>Fuunji Shinjuku honten</h3>
+          <p class="why">Hours 11:00–15:00 and 17:00–21:00.</p>
+          <dl>
+            <div><dt>How long</dt><dd>A bowl</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Unverified</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://tabelog.com/en/tokyo/A1304/A130401/13044091/dtlrvwlst/">Tabelog</a> 3.77 / 5,392. Source 2 still open.</dd></div>
+          </dl>
+        </article>
+                <article class="card">
+          <p class="role">Backup</p>
+          <h3>Menya Musashi Shinjuku honten</h3>
+          <p class="why">West exit, not south. Hours 11:00–22:30. Backup only, not the Sat Oct 17 late dinner.</p>
+          <dl>
+            <div><dt>How long</dt><dd>A bowl</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Unverified</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://tabelog.com/en/tokyo/A1304/A130401/13001013/">Tabelog</a> 3.47 / 2,013. Source 2 still open.</dd></div>
+          </dl>
+        </article>
+      </div>
+      <h3 class="slot">Afternoon sight</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">First</p>
+          <h3>Yoyogi Park</h3>
+          <p class="why">Next to Meiji Jingu. Always open. Facilities 9:00–17:00. No closing days.</p>
+          <dl>
+            <div><dt>How long</dt><dd>Unverified</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Free</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://www.japan-guide.com/e/e3034_002.html">Japan Guide</a> 3.8 (2,057). Source 2 still open.</dd></div>
+          </dl>
+        </article>
+        <article class="card is-empty">
+          <p class="role">Backup</p>
+          <p class="why">No backup has cleared the review bar yet.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="d19" class="day">
+    <div class="wrap">
+      <p class="kicker">Monday · Tokyo</p>
+      <h2>Oct 19</h2>
+      <p class="lede">Tsukiji in the morning. teamLab Planets in the afternoon. Borderless only if Planets is sold out.</p>
+      <h3 class="slot">Morning</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">First</p>
+          <h3>Tsukiji Yamacho</h3>
+          <p class="why">Hours 6:50 AM–3:30 PM.</p>
+          <dl>
+            <div><dt>How long</dt><dd>One stop</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Unverified</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://tabelog.com/en/tokyo/A1313/A131301/13100313/">Tabelog</a> 3.49 / 1,097. Source 2 still open.</dd></div>
+          </dl>
+        </article>
+        <article class="card is-empty">
+          <p class="role">Backup</p>
+          <p class="why">No backup has cleared the review bar yet.</p>
+        </article>
+      </div>
+      <h3 class="slot">Afternoon sight</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">First</p>
+          <h3>teamLab Planets</h3>
+          <p class="why">Hours 8:00–22:00, last entry one hour before. Oct 19 is not on the closed list. About 10 minutes from Toyosu Station Exit 7. Barefoot, free lockers, no re-entry.</p>
+          <dl>
+            <div><dt>How long</dt><dd>About 2–3 hours</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Timed ticket, not sold at the door. Adult list price ¥3,800. The Oct 19 slot price is unverified until the calendar is open.</dd></div>
+            <div><dt>Rating</dt><dd>Unverified. A review count was not on the checked page. Source 2 still open.</dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <p class="role">Backup</p>
+          <h3>teamLab Borderless</h3>
+          <p class="why">Azabudai Hills, only if Planets is sold out. The museum is open Monday Oct 19. Regular hours 8:30–21:00. Oct 19 is on the later-close list, so it closes at 10:00 PM that night. Last entry is one hour before closing. The special exhibition ends Oct 8. The museum is closed Tuesday Oct 20, which is not this visit.</p>
+          <dl>
+            <div><dt>How long</dt><dd>Unverified</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Adult entrance pass listed at ¥3,600. Adult tickets use dynamic pricing, so the Oct 19 price is unverified.</dd></div>
+            <div><dt>Rating</dt><dd>Unverified. Source 2 still open. <a href="https://www.teamlab.art/e/tokyo/">Official page</a>.</dd></div>
+          </dl>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="d20" class="day">
+    <div class="wrap">
+      <p class="kicker">Tuesday · Asakusa</p>
+      <h2>Oct 20</h2>
+      <h3 class="slot">Morning sight</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">First</p>
+          <h3>Senso-ji</h3>
+          <p class="why">October main hall about 6:30–17:00.</p>
+          <dl>
+            <div><dt>How long</dt><dd>30 minutes for the temple. The neighborhood walk is about 3 hours.</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Free, no reservation found</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://www.japan-guide.com/e/e3001.html">Japan Guide</a> 4.2 (2,282). Source 2 still open.</dd></div>
+          </dl>
+        </article>
+        <article class="card is-empty">
+          <p class="role">Backup</p>
+          <p class="why">No backup has cleared the review bar yet.</p>
+        </article>
+      </div>
+      <h3 class="slot">Lunch</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">First</p>
+          <h3>Komagata Dozeu honten</h3>
+          <p class="why">Hours 11:00 AM–8:00 PM. Closed days are not fixed.</p>
+          <dl>
+            <div><dt>How long</dt><dd>A meal</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Unverified</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://tabelog.com/en/tokyo/A1311/A131102/13003684/">Tabelog</a> 3.59 / 2,085. Source 2 still open.</dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <p class="role">Second</p>
+          <h3>Daikokuya Tempura honten</h3>
+          <p class="why">Asakusa 1-38-10. Hours 11:00–20:00.</p>
+          <dl>
+            <div><dt>How long</dt><dd>A meal</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Unverified</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://tabelog.com/en/tokyo/A1311/A131102/13003696/">Tabelog</a> 3.49 / 1,630. Source 2 still open.</dd></div>
+          </dl>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="d21" class="day">
+    <div class="wrap">
+      <p class="kicker">Wednesday · Tokyo</p>
+      <h2>Oct 21</h2>
+      <p class="lede">East Gardens stays. Tokyo National Museum did not clear. Rokurinsha is the Wednesday meal. Fuunji Yaesu’s header is 3.63 / 1,106. No second page, so it does not clear. Wednesday has no approved backup. Dozeu is Asakusa, not that backup.</p>
+      <h3 class="slot">Morning sight</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">First</p>
+          <h3>East Gardens</h3>
+          <p class="why">9:00–16:30, entry until 16:00. Free.</p>
+          <dl>
+            <div><dt>How long</dt><dd>90 minutes</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Free</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://www.japan-guide.com/e/e3018.html">Japan Guide</a> 3.8 (1,727). Source 2 still open.</dd></div>
+          </dl>
+        </article>
+        <article class="card is-empty">
+          <p class="role">Backup</p>
+          <p class="why">No backup has cleared the review bar yet.</p>
+        </article>
+      </div>
+      <h3 class="slot">Meal</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">First</p>
+          <h3>Rokurinsha, Tokyo Station Ramen Street</h3>
+          <p class="why">六厘舎. Yaesu exit, B1, 東京駅一番街. Tsukemen. Tabelog prints no reservations, and hours every day 7:30–9:45 (food last order 9:30) and 10:00–23:00 (food last order 22:30). Those hours are user-edited on Tabelog. The shop site did not print them. Wednesday is inside those hours.</p>
+          <dl>
+            <div><dt>How long</dt><dd>A bowl</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>No reservations</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://tabelog.com/tokyo/A1302/A130201/13093047/">Tabelog</a> header score 3.77 / 7,806. The ratings page’s simple average is not the score. Source 2 still open.</dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <p class="role">Backup</p>
+          <h3>Fuunji Yaesu</h3>
+          <p class="why">東京ラーメン横丁店, separate from Shinjuku. Not the backup. Header 3.63 / 1,106. No second page, so it does not clear. Shop site: 11:00–23:00, open every day, ends when the soup runs out. Address 八重洲2-1, 八重洲地下街北1号 (Yaesu 2-1). 19 counter seats.</p>
+          <dl>
+            <div><dt>How long</dt><dd>A bowl</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>No reservations. <a href="https://www.fu-unji.com/">Shop</a>.</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://tabelog.com/en/tokyo/A1302/A130201/13273045/">Tabelog</a> header 3.63 / 1,106. No second page, so it does not clear. Not ranked. Wednesday has no approved backup.</dd></div>
+          </dl>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="d22" class="day">
+    <div class="wrap">
+      <p class="kicker">Thursday · Kyoto</p>
+      <h2>Oct 22</h2>
+      <p class="lede">Checkout in Shinjuku at 11:00 AM, then the shinkansen. The Royal Park Hotel Kyoto Sanjo, Kawaramachi-Sanjo. Checkout Sun Oct 25. Fushimi Inari only, turn around at the view. Izutsu is the dinner. No second dinner cleared.</p>
+      <h3 class="slot">Arrival</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">Booked</p>
+          <h3>Checkout, shinkansen, Royal Park Hotel Kyoto Sanjo</h3>
+          <p class="why">Checkout Hotel Sunroute Plaza Shinjuku at 11:00 AM. Shinkansen to Kyoto. The Royal Park Hotel Kyoto Sanjo, Kawaramachi-Sanjo. Checkout Sun Oct 25.</p>
+          <dl>
+            <div><dt>How long</dt><dd>Unverified</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Hotel already booked. Kyoto checkout time unverified.</dd></div>
+            <div><dt>Rating</dt><dd>Unverified</dd></div>
+          </dl>
+        </article>
+        <article class="card is-empty">
+          <p class="role">Backup</p>
+          <p class="why">No backup has cleared the review bar yet.</p>
+        </article>
+      </div>
+      <h3 class="slot">Afternoon sight</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">First</p>
+          <h3>Fushimi Inari</h3>
+          <p class="why">JR Nara Line, Kyoto to Inari, 5 minutes. Japan Guide says always open. The fee was not in the text retrieved. Turn around at the view.</p>
+          <dl>
+            <div><dt>How long</dt><dd>30–45 minutes up to the view. 2–3 hours if you go to the top.</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Fee not in the text retrieved.</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://www.japan-guide.com/e/e3915.html">Japan Guide</a> 4.6 (2,095). Source 2 still open.</dd></div>
+          </dl>
+        </article>
+        <article class="card is-empty">
+          <p class="role">Backup</p>
+          <p class="why">No backup has cleared the review bar yet.</p>
+        </article>
+      </div>
+      <h3 class="slot">Dinner</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">Dinner</p>
+          <h3>Izuu / Izutsu, Gion</h3>
+          <p class="why">Closed Tuesday. Tabelog says close at 10:00 PM on Thursday, Friday, and Saturday. Thursday is open.</p>
+          <dl>
+            <div><dt>How long</dt><dd>A meal</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Unverified</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://tabelog.com/en/kyoto/A2601/A260301/26000585/">Tabelog</a> 3.68 / 1,175. Source 2 still open.</dd></div>
+          </dl>
+        </article>
+        <article class="card is-empty">
+          <p class="role">Backup</p>
+          <p class="why">No backup has cleared the review bar yet.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="d23" class="day">
+    <div class="wrap">
+      <p class="kicker">Friday · Kyoto</p>
+      <h2>Oct 23</h2>
+      <h3 class="slot">Morning sight</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">First</p>
+          <h3>Kiyomizu-dera</h3>
+          <p class="why">Open 6:00–18:00 from Sep 1 to Nov 20. Night opening starts Nov 21, after you leave. Regular adult price stays blank.</p>
+          <dl>
+            <div><dt>How long</dt><dd>Unverified</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>No timed-entry URL found. Regular October price unverified. Regular adult price stays blank.</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://www.japan-guide.com/e/e3901.html">Japan Guide</a> 4.6 (2,712). Source 2 still open.</dd></div>
+          </dl>
+        </article>
+        <article class="card is-empty">
+          <p class="role">Backup</p>
+          <p class="why">No backup has cleared the review bar yet.</p>
+        </article>
+      </div>
+      <h3 class="slot">Lunch</h3>
+      <div class="cards">
+        <article class="card is-empty">
+          <p class="role">First</p>
+          <h3>None cleared</h3>
+          <p class="why">The checked page names Nishiki or Kawaramachi and says none cleared the bar.</p>
+        </article>
+        <article class="card is-empty">
+          <p class="role">Backup</p>
+          <p class="why">No backup has cleared the review bar yet.</p>
+        </article>
+      </div>
+      <h3 class="slot">Dinner</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">First</p>
+          <h3>Izuu / Izutsu, Gion</h3>
+          <p class="why">Friday is open. Closed Tuesday. Tabelog says close at 10:00 PM on Thursday, Friday, and Saturday.</p>
+          <dl>
+            <div><dt>How long</dt><dd>A meal</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Unverified</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://tabelog.com/en/kyoto/A2601/A260301/26000585/">Tabelog</a> 3.68 / 1,175. Source 2 still open.</dd></div>
+          </dl>
+        </article>
+        <article class="card is-empty">
+          <p class="role">Backup</p>
+          <p class="why">No backup has cleared the review bar yet.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="d24" class="day">
+    <div class="wrap">
+      <p class="kicker">Saturday · Kyoto</p>
+      <h2>Oct 24</h2>
+      <h3 class="slot">Morning sight</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">First</p>
+          <h3>Ginkaku-ji</h3>
+          <p class="why">8:30–17:00.</p>
+          <dl>
+            <div><dt>How long</dt><dd>How long unverified</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>General ¥1,000. No booking URL.</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://www.japan-guide.com/e/e3907.html">Japan Guide</a> 4.1 (1,965). Source 2 still open.</dd></div>
+          </dl>
+        </article>
+        <article class="card is-empty">
+          <p class="role">Backup</p>
+          <p class="why">No backup has cleared the review bar yet.</p>
+        </article>
+      </div>
+      <h3 class="slot">Lunch</h3>
+      <div class="cards">
+        <article class="card is-empty">
+          <p class="role">First</p>
+          <h3>None cleared</h3>
+          <p class="why">The checked page names near Ginkaku-ji or Shijo and says none cleared the bar.</p>
+        </article>
+        <article class="card is-empty">
+          <p class="role">Backup</p>
+          <p class="why">No backup has cleared the review bar yet.</p>
+        </article>
+      </div>
+      <h3 class="slot">Dinner</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">Dinner</p>
+          <h3>Izuu / Izutsu, Gion</h3>
+          <p class="why">Saturday is open. Closed Tuesday. Tabelog says close at 10:00 PM on Saturday.</p>
+          <dl>
+            <div><dt>How long</dt><dd>A meal</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Unverified</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://tabelog.com/en/kyoto/A2601/A260301/26000585/">Tabelog</a> 3.68 / 1,175. Source 2 still open.</dd></div>
+          </dl>
+        </article>
+        <article class="card is-empty">
+          <p class="role">Backup</p>
+          <p class="why">No backup has cleared the review bar yet.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="d25" class="day">
+    <div class="wrap">
+      <p class="kicker">Sunday · Osaka</p>
+      <h2>Oct 25</h2>
+      <h3 class="slot">Arrival</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">First</p>
+          <h3>Hotel Nikko Osaka, then Dotonbori</h3>
+          <p class="why">Check in at 3:00 PM, 1-3-3 Nishi-Shinsaibashi, then Dotonbori. Trip reference ZO-AX1088-77283. Paid $555.90. Checkout Wed Oct 28, 11:00 AM.</p>
+          <dl>
+            <div><dt>How long</dt><dd>Unverified</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Check-in 3:00 PM. Trip reference ZO-AX1088-77283.</dd></div>
+            <div><dt>Rating</dt><dd>Unverified</dd></div>
+          </dl>
+        </article>
+        <article class="card is-empty">
+          <p class="role">Backup</p>
+          <p class="why">No backup has cleared the review bar yet.</p>
+        </article>
+      </div>
+      <h3 class="slot">Dinner</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">First</p>
+          <h3>Okonomiyaki Mizuno, Dotonbori</h3>
+          <p class="why">Hours 11:00–22:00. 38 seats.</p>
+          <dl>
+            <div><dt>How long</dt><dd>A meal</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Unverified</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://tabelog.com/en/osaka/A2701/A270202/27001278/dtlrvwlst/">Tabelog</a> 3.56 / 1,741. Source 2 still open.</dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <p class="role">Second</p>
+          <h3>Dotonbori Imai honten</h3>
+          <p class="why">Hours 11:30–21:30, food last order 20:45. Closed Wednesday and the fourth Tuesday. Sunday is open. 138 seats.</p>
+          <dl>
+            <div><dt>How long</dt><dd>A meal</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Unverified</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://tabelog.com/en/osaka/A2701/A270202/27001289/">Tabelog</a> 3.58 / 2,389. Source 2 still open.</dd></div>
+          </dl>
+        </article>
+      </div>
+      <h3 class="slot">Late fallback</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">Fallback</p>
+          <h3>Kinryu Ramen Dotonbori</h3>
+          <p class="why">After 21:00. 24 hours. A printed review says it is nearly standing, so this is the after-21:00 fallback, not a seated meal.</p>
+          <dl>
+            <div><dt>How long</dt><dd>A bowl</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Unverified</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://tabelog.com/en/osaka/A2701/A270202/27001495/">Tabelog</a> 3.49 / 1,095. Source 2 still open.</dd></div>
+          </dl>
+        </article>
+        <article class="card is-empty">
+          <p class="role">Backup</p>
+          <p class="why">No backup has cleared the review bar yet.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="d26" class="day">
+    <div class="wrap">
+      <p class="kicker">Monday · Osaka</p>
+      <h2>Oct 26</h2>
+      <p class="lede">Kaiyukan at 11:00 AM. Late morning, so 2–3 hours still ends before Dotonbori dinner. Imai is the Monday second only.</p>
+      <h3 class="slot">Morning sight</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">First</p>
+          <h3>Osaka Aquarium Kaiyukan</h3>
+          <p class="why">Tempozan. 11:00 AM. About 5 minutes from Osakako Station Exit 1. Official calendar feed for Mon Oct 26, 2026 prints open, 10:30–20:00, last admission 19:00.</p>
+          <dl>
+            <div><dt>How long</dt><dd>2–3 hours</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Adult ¥2,800, child ¥1,400, toddler ¥700 on the Oct 26 calendar feed. <a href="https://www.kaiyukan.com/info/hours/">Hours</a>.</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://www.tripadvisor.com/Attraction_Review-g298566-d320969-Reviews-Osaka_Aquarium_Kaiyukan-Osaka_Osaka_Prefecture_Kinki.html">Tripadvisor</a> 4.2 / 6,849, duration 2–3 hours. Tripadvisor prints that it does not currently meet their animal-welfare policy. <a href="https://www.jalan.net/kankou/spt_27107cc3320040646/">Jalan</a> 4.2 / 5,503.</dd></div>
+          </dl>
+        </article>
+        <article class="card is-empty">
+          <p class="role">Backup</p>
+          <p class="why">No backup has cleared the review bar yet.</p>
+        </article>
+      </div>
+      <h3 class="slot">Dinner</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">First</p>
+          <h3>Okonomiyaki Mizuno, Dotonbori</h3>
+          <p class="why">Hours 11:00–22:00. 38 seats. Open this Monday and Tue Oct 27.</p>
+          <dl>
+            <div><dt>How long</dt><dd>A meal</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Unverified</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://tabelog.com/en/osaka/A2701/A270202/27001278/dtlrvwlst/">Tabelog</a> 3.56 / 1,741. Source 2 still open.</dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <p class="role">Second</p>
+          <h3>Dotonbori Imai honten</h3>
+          <p class="why">Open this Monday only. Hours 11:30–21:30, food last order 20:45. 138 seats. Not for Tuesday.</p>
+          <dl>
+            <div><dt>How long</dt><dd>A meal</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Unverified</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://tabelog.com/en/osaka/A2701/A270202/27001289/">Tabelog</a> 3.58 / 2,389. Source 2 still open.</dd></div>
+          </dl>
+        </article>
+      </div>
+      <h3 class="slot">Late fallback</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">Fallback</p>
+          <h3>Kinryu Ramen Dotonbori</h3>
+          <p class="why">After 21:00. 24 hours. Nearly standing, so the after-21:00 fallback, not a seated meal.</p>
+          <dl>
+            <div><dt>How long</dt><dd>A bowl</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Unverified</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://tabelog.com/en/osaka/A2701/A270202/27001495/">Tabelog</a> 3.49 / 1,095. Source 2 still open.</dd></div>
+          </dl>
+        </article>
+        <article class="card is-empty">
+          <p class="role">Backup</p>
+          <p class="why">No backup has cleared the review bar yet.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="d27" class="day">
+    <div class="wrap">
+      <p class="kicker">Tuesday · Osaka</p>
+      <h2>Oct 27</h2>
+      <p class="lede">Daruma stays off this day. Shinsekai is the morning swap only, and you leave after dark. Imai is not for Tuesday.</p>
+      <h3 class="slot">Morning sight</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">First</p>
+          <h3>Osaka Castle</h3>
+          <p class="why">9:00–18:00, entry until 5:30 PM. About 10 minutes on the Nagahori Tsurumi-ryokuchi Line from Shinsaibashi to Osaka Business Park. The walk from that station is unverified.</p>
+          <dl>
+            <div><dt>How long</dt><dd>A morning, then you leave</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Adult ¥1,200. The tower does not take reservations.</dd></div>
+            <div><dt>Rating</dt><dd>Unverified. Source 2 still open.</dd></div>
+          </dl>
+        </article>
+        <article class="card">
+          <p class="role">Swap</p>
+          <h3>Tsutenkaku</h3>
+          <p class="why">Shinsekai, 1-18-6 Ebisuhigashi. Morning only. Official page prints 9:00–21:45, last entry 21:15. Tuesday Oct 27 is not named there, so the Tuesday closure is unverified. Leave Shinsekai after dark.</p>
+          <dl>
+            <div><dt>How long</dt><dd>Unverified</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Adult ¥1,500. Time-reserved. <a href="https://tsutenkaku.co.jp/annai/">tsutenkaku.co.jp</a>.</dd></div>
+            <div><dt>Rating</dt><dd>Unverified. Source 2 still open.</dd></div>
+          </dl>
+        </article>
+      </div>
+      <h3 class="slot">Dinner</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">First</p>
+          <h3>Okonomiyaki Mizuno, Dotonbori</h3>
+          <p class="why">Hours 11:00–22:00. 38 seats. Daruma is not on this day.</p>
+          <dl>
+            <div><dt>How long</dt><dd>A meal</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Unverified</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://tabelog.com/en/osaka/A2701/A270202/27001278/dtlrvwlst/">Tabelog</a> 3.56 / 1,741. Source 2 still open.</dd></div>
+          </dl>
+        </article>
+        <article class="card is-empty">
+          <p class="role">Backup</p>
+          <p class="why">No backup has cleared the review bar yet.</p>
+        </article>
+      </div>
+      <h3 class="slot">Late fallback</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">Fallback</p>
+          <h3>Kinryu Ramen Dotonbori</h3>
+          <p class="why">After 21:00. 24 hours. Nearly standing, so the after-21:00 fallback, not a seated meal.</p>
+          <dl>
+            <div><dt>How long</dt><dd>A bowl</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Unverified</dd></div>
+            <div><dt>Rating</dt><dd><a href="https://tabelog.com/en/osaka/A2701/A270202/27001495/">Tabelog</a> 3.49 / 1,095. Source 2 still open.</dd></div>
+          </dl>
+        </article>
+        <article class="card is-empty">
+          <p class="role">Backup</p>
+          <p class="why">No backup has cleared the review bar yet.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="d28" class="day">
+    <div class="wrap">
+      <p class="kicker">Wednesday · Departure</p>
+      <h2>Oct 28</h2>
+      <p class="lede">No morning sight.</p>
+      <h3 class="slot">Departure</h3>
+      <div class="cards">
+        <article class="card">
+          <p class="role">First</p>
+          <h3>Checkout, then JL60</h3>
+          <p class="why">Checkout at Hotel Nikko Osaka at 11:00 AM. Leave for Kansai by 2:00 PM. No morning sight. JL60, Kansai 6:00 PM to LAX 12:15 PM.</p>
+          <dl>
+            <div><dt>How long</dt><dd>Unverified</dd></div>
+            <div><dt>Ticket or reservation</dt><dd>Booked flight. Kansai 6:00 PM to LAX 12:15 PM.</dd></div>
+            <div><dt>Rating</dt><dd>Unverified</dd></div>
+          </dl>
+        </article>
+        <article class="card is-empty">
+          <p class="role">Backup</p>
+          <p class="why">No backup has cleared the review bar yet.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="food">
+    <div class="wrap">
+      <p class="kicker">Tabelog average, not review count</p>
+      <h2>Food, best to worst</h2>
+      <p class="lede">Same averages already on the checked page. Tied scores stay in that page’s order. Header score unverified stays last.</p>
+      <ol class="rank">
+        <li>
+          <span class="score">3.77 · Fuunji Shinjuku honten</span>
+          5,392 reviews (<a href="https://tabelog.com/en/tokyo/A1304/A130401/13044091/dtlrvwlst/">Tabelog</a>). Source 2 still open. Hours 11:00–15:00 and 17:00–21:00. Not a late dinner.
+        </li>
+        <li>
+          <span class="score">3.77 · Rokurinsha, Tokyo Station Ramen Street</span>
+          Header score 3.77 / 7,806 (<a href="https://tabelog.com/tokyo/A1302/A130201/13093047/">Tabelog</a>). Source 2 still open. No reservations. Wednesday meal. Wednesday has no approved backup. Fuunji Yaesu is not ranked. Same station area. Hours on Tabelog are user-edited: every day 7:30–9:45 and 10:00–23:00. The shop site did not print them.
+        </li>
+        <li>
+          <span class="score">3.68 · Izuu / Izutsu, Gion</span>
+          1,175 reviews (<a href="https://tabelog.com/en/kyoto/A2601/A260301/26000585/">Tabelog</a>). Source 2 still open. Closed Tuesday. Tabelog says close at 10:00 PM on Thursday, Friday, and Saturday. Dinner on those three nights.
+        </li>
+        <li>
+          <span class="score">3.59 · Komagata Dozeu honten, Asakusa</span>
+          2,085 reviews (<a href="https://tabelog.com/en/tokyo/A1311/A131102/13003684/">Tabelog</a>). Source 2 still open. Hours 11:00 AM–8:00 PM. Closed days are not fixed. Asakusa lunch, not a backup for Fuunji Yaesu.
+        </li>
+        <li>
+          <span class="score">3.58 · Kamo to Negi Iitorumine</span>
+          Inside the JR Shinjuku gates. 1,651 reviews (<a href="https://tabelog.com/en/tokyo/A1304/A130401/13295874/">Tabelog</a>). Source 2 still open. Hours 7:00–23:00, last order 22:30. This is the late option.
+        </li>
+        <li>
+          <span class="score">3.58 · Dotonbori Imai honten</span>
+          2,389 reviews (<a href="https://tabelog.com/en/osaka/A2701/A270202/27001289/">Tabelog</a>). Source 2 still open. Hours 11:30–21:30, food last order 20:45. Closed Wednesday and the fourth Tuesday. Monday second only, not Tuesday. 138 seats.
+        </li>
+        <li>
+          <span class="score">3.56 · Okonomiyaki Mizuno, Dotonbori</span>
+          1,741 reviews (<a href="https://tabelog.com/en/osaka/A2701/A270202/27001278/dtlrvwlst/">Tabelog</a>). Source 2 still open. Hours 11:00–22:00. 38 seats. Seated dinner Sun Oct 25, Mon Oct 26, and Tue Oct 27.
+        </li>
+        <li>
+          <span class="score">3.49 · Tsukiji Yamacho</span>
+          1,097 reviews (<a href="https://tabelog.com/en/tokyo/A1313/A131301/13100313/">Tabelog</a>). Source 2 still open. Hours 6:50 AM–3:30 PM.
+        </li>
+        <li>
+          <span class="score">3.49 · Daikokuya Tempura honten</span>
+          Asakusa 1-38-10. 1,630 reviews (<a href="https://tabelog.com/en/tokyo/A1311/A131102/13003696/">Tabelog</a>). Source 2 still open. Hours 11:00–20:00. Asakusa second, under Dozeu.
+        </li>
+        <li>
+          <span class="score">3.49 · Kinryu Ramen Dotonbori</span>
+          1,095 reviews (<a href="https://tabelog.com/en/osaka/A2701/A270202/27001495/">Tabelog</a>). Source 2 still open. 24 hours. Nearly standing, so the after-21:00 fallback on Sunday, Monday, and Tuesday, not a seated meal.
+        </li>
+        <li>
+          <span class="score">3.47 · Menya Musashi Shinjuku honten</span>
+          West exit. 2,013 reviews (<a href="https://tabelog.com/en/tokyo/A1304/A130401/13001013/">Tabelog</a>). Source 2 still open. Hours 11:00–22:30. Backup only, not the Sat Oct 17 late dinner.
+        </li>
+        <li>
+          <span class="score">3.46 · Kushikatsu Daruma Shinsekai souhonten</span>
+          1,250 reviews (<a href="https://tabelog.com/en/osaka/A2701/A270206/27004260/">Tabelog</a>). Jalan 4.2 / 1,979 (<a href="https://www.jalan.net/gourmet/grm_guide000000177247/">Jalan</a>). Jalan hours 12:00–8:30 PM, closed Friday. Not on the Namba days.
+        </li>
+        <li>
+          <span class="score">Unverified · Fuunji Yaesu</span>
+          東京ラーメン横丁店, separate from Shinjuku. 1,106 reviews, header score unverified (<a href="https://tabelog.com/en/tokyo/A1302/A130201/13273045/">Tabelog</a>). 19 counter seats. No reservations. Tabelog does not print the hours and says to check the shop site. Shop site prints 11:00–23:00, open every day, ends when the soup runs out (<a href="https://www.fu-unji.com/">fu-unji.com</a>). The search finished with no second page. Wednesday has no approved backup.
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="sights">
+    <div class="wrap">
+      <p class="kicker">Numbers already printed</p>
+      <h2>Sights</h2>
+      <p class="lede">Japan Guide, Tripadvisor, or Jalan only where the checked page printed them. Where it did not, the rating stays unverified. Source 2 is still open on the rows that say so.</p>
+      <ul class="sights">
+        <li><span class="score">Tokyo · Meiji Jingu</span> Japan Guide 4.1 (2,779), about 1 hour, free, October 5:40–16:40 (<a href="https://www.japan-guide.com/e/e3002.html">Japan Guide</a>). Source 2 still open.</li>
+        <li><span class="score">Tokyo · Yoyogi Park</span> Sunday afternoon. Japan Guide 3.8 (2,057), always open, facilities 9:00–17:00 (<a href="https://www.japan-guide.com/e/e3034_002.html">Japan Guide</a>). Source 2 still open.</li>
+        <li><span class="score">Tokyo · Senso-ji</span> Japan Guide 4.2 (2,282), 30 minutes for the temple, free (<a href="https://www.japan-guide.com/e/e3001.html">Japan Guide</a>). Source 2 still open.</li>
+        <li><span class="score">Tokyo · East Gardens</span> Japan Guide 3.8 (1,727), 90 minutes, free, 9:00–16:30 (<a href="https://www.japan-guide.com/e/e3018.html">Japan Guide</a>). Source 2 still open.</li>
+        <li><span class="score">Tokyo · teamLab Planets</span> Mon Oct 19. Hours 8:00–22:00, about 2–3 hours, timed ticket, adult list price ¥3,800, Oct 19 slot price unverified. Rating unverified. Source 2 still open.</li>
+        <li><span class="score">Tokyo · teamLab Borderless</span> Backup only if Planets is sold out. Open Monday Oct 19, regular hours 8:30–21:00, closes 10:00 PM that night, last entry one hour before. Adult pass listed at ¥3,600, Oct 19 price unverified. Closed Tuesday Oct 20, not this visit. Rating unverified. <a href="https://www.teamlab.art/e/tokyo/">Official page</a>. Source 2 still open.</li>
+        <li><span class="score">Kyoto · Kiyomizu-dera</span> Japan Guide 4.6 (2,712), 6:00–18:00 from Sep 1 to Nov 20 (<a href="https://www.japan-guide.com/e/e3901.html">Japan Guide</a>). Regular adult price stays blank. Source 2 still open.</li>
+        <li><span class="score">Kyoto · Fushimi Inari</span> Japan Guide 4.6 (2,095), 30–45 minutes to the view (<a href="https://www.japan-guide.com/e/e3915.html">Japan Guide</a>). Source 2 still open.</li>
+        <li><span class="score">Kyoto · Ginkaku-ji</span> Japan Guide 4.1 (1,965), 8:30–17:00, general ¥1,000, how long unverified (<a href="https://www.japan-guide.com/e/e3907.html">Japan Guide</a>). Source 2 still open.</li>
+        <li><span class="score">Osaka · Osaka Aquarium Kaiyukan</span> Mon Oct 26, 11:00 AM. Tripadvisor 4.2 / 6,849, 2–3 hours. Tripadvisor prints that it does not currently meet their animal-welfare policy. Jalan 4.2 / 5,503. Calendar feed that date: open 10:30–20:00, last admission 19:00, adult ¥2,800. <a href="https://www.tripadvisor.com/Attraction_Review-g298566-d320969-Reviews-Osaka_Aquarium_Kaiyukan-Osaka_Osaka_Prefecture_Kinki.html">Tripadvisor</a>. <a href="https://www.jalan.net/kankou/spt_27107cc3320040646/">Jalan</a>. <a href="https://www.kaiyukan.com/info/hours/">kaiyukan.com</a>.</li>
+        <li><span class="score">Osaka · Osaka Castle</span> Tue Oct 27 morning. Japan Guide 3.8 (2,313). Jalan keep 4.1 / 1,726. 9:00–18:00, entry until 17:30, adult ¥1,200 for the main keep and the stone wall museum, no tower reservation.</li>
+        <li><span class="score">Osaka · Tsutenkaku</span> Morning swap only. Official page prints 9:00–21:45, last entry 21:15, adult ¥1,500 (<a href="https://tsutenkaku.co.jp/annai/">tsutenkaku.co.jp</a>). Tuesday Oct 27 is not named on that page, so the Tuesday closure is unverified. Leave Shinsekai after dark. Rating unverified. Source 2 still open.</li>
+        <li><span class="score">Left off</span> Tokyo National Museum, Eikan-do, Kodai-ji, and To-ji did not clear a printed count. Arashiyama, Nara, Skytree, Universal, and Kinkaku-ji stay off. Kaiyukan is Monday because that day had no daytime plan. Kabukicho is not a stop. Daruma is not on the Namba days.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="snacks">
+    <div class="wrap">
+      <p class="kicker">Snacks, must-try, social</p>
+      <h2>Not filled in</h2>
+      <p class="empty">Not on a checked source yet.</p>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap">Ratings are only the ones already checked. A blank backup means it has not cleared yet.</div>
+</footer>
+<script>
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll(".nav a"));
+    var sections = links.map(function (a) {
+      return document.querySelector(a.getAttribute("href"));
+    }).filter(Boolean);
+    function mark() {
+      var line = 80;
+      var current = sections[0];
+      sections.forEach(function (sec) {
+        if (sec.getBoundingClientRect().top <= line) current = sec;
+      });
+      links.forEach(function (a) {
+        if (a.getAttribute("href") === "#" + current.id) a.setAttribute("aria-current", "true");
+        else a.removeAttribute("aria-current");
+      });
+    }
+    document.addEventListener("scroll", mark, { passive: true });
+    mark();
+  })();
+</script>
+</body>
+</html>
