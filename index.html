@@ -157,7 +157,7 @@ function stopHTML(s,i){if(s.href)return `<div class="stop" data-n="${i}" id="${D
  ${srcs(s.src)}${r?`<div class="src">Tabelog rating, hours, payment, address: ${L('Tabelog',r.url)} (fetched Oct 15, 2026)</div>`:''}${s.g||s.ta?`<div class="src">${s.g?'Google rating '+L('Google Maps',s.g.place)+' (fetched Oct 15, 2026)':''}${s.ta?' · Tripadvisor figure from a web search of '+L('its listing',s.ta.url)+' (Oct 15, 2026)'+(s.ta.note?' — '+esc(s.ta.note):''):''}</div>`:''}</div></div></details>`}
 
 const SHORT=n=>{let x=String(n).replace(/ — Optional, not booked/,'');let a=x.split(/ — | \(|: |, then /)[0].trim();if(a.length<9)a=x.split(/ \(| — /)[0];const w=a.split(' ');return w.length>8?w.slice(0,8).join(' ')+'…':a};
-const ICO=s=>{const n=s.n;if(s.cat=='move'){if(/JL\d|flight/i.test(n))return '✈️';if(/bus/i.test(n))return '🚌';if(/shinkansen|Nozomi/i.test(n))return '🚄';if(/train|Rapi:t|Keihan/i.test(n))return '🚆';if(/Check in|Rest at hotel/i.test(n))return '🏨';return '📝'}
+const ICO=s=>{const n=s.n;if(s.href)return '☕';if(s.cat=='move'){if(/JL\d|flight/i.test(n))return '✈️';if(/bus/i.test(n))return '🚌';if(/shinkansen|Nozomi/i.test(n))return '🚄';if(/train|Rapi:t|Keihan/i.test(n))return '🚆';if(/Check in|Rest at hotel/i.test(n))return '🏨';return '📝'}
  if(/samurai|ninja|kabuki|show|festival|Godzilla/i.test(n))return '🎭';if(s.cat=='bar')return '🍸';if(s.cat=='shop')return '🛍️';if(s.cat=='food')return /coffee|café|cafe|tea|fuglen|bakery/i.test(n)?'☕':'🍽️';return '📍'};
 const ISBOOKED=s=>/^BOOKED/i.test(s.book||'')||s.book=='Booked';
 const ISOPT=s=>!!(s.opt||/\balt\b/.test(s.t||'')||/Optional, not booked/.test(s.n));
@@ -170,7 +170,7 @@ function legHTML(a,b,d){if(a.href||b.href)return '';if(b.leg)return `<a class="l
  if(TRIP(a)||TRIP(b)||d.id=='d16')return '';const o=place(a,d),de=place(b,d);if(o==de)return '';
  let t;if(a.ll&&a.ll[0]&&b.ll&&b.ll[0]){const k=km(a.ll,b.ll);t=(k<1.2?'🚶 ':'🚇 ')+k.toFixed(1)+' km apart'+(k>=2.5?' · 🚕 or taxi (GO/Uber)':'')}else t='🧭 Route';
  return `<a class="leg" href="${esc(DIR(o,de))}" target="_blank" rel="noopener">${t} · <u>live times on Google Maps</u></a>`}
-function glRow(s,i,d,o){return `<a class="gl ${o?'o':''}" ${s.href?`href="${esc(s.href)}"`:`href="#${d.id}" data-go="${d.id}-s${i}"`}><span class="tm">${esc(String(s.t).replace(/\s*alt$/,''))}</span><span class="ic">${ICO(s)}</span><span class="nm">${esc(SHORT(s.n))}${ISBOOKED(s)?'<span class="bdg ok">BOOKED</span>':''}${o?'<span class="bdg op">optional</span>':''}</span><span class="go">›</span></a>`}
+function glRow(s,i,d,o){return `<a class="gl ${o?'o':''}" ${s.href?`href="${esc(s.href)}"`:`href="#${d.id}" data-go="${d.id}-s${i}"`}><span class="tm">${esc(String(s.t).replace(/\s*alt$/,''))}</span><span class="ic">${ICO(s)}</span><span class="nm">${s.href?esc(s.n)+' <u style="color:#1a73e8">→</u>':esc(SHORT(s.n))}${ISBOOKED(s)?'<span class="bdg ok">BOOKED</span>':''}${o?'<span class="bdg op">optional</span>':''}</span><span class="go">›</span></a>`}
 function glance(d){const w=d.weather;let x=`<div class="card glance">`;
  if(w)x+=`<div class="gwx">${ICON(w.cond)} <b>${w.hi}°/${w.lo}°C · rain ${esc(w.pop)}</b> <span class="mut">${esc(w.cond)}</span></div>`;
  const main=[],opts=[];d.stops.forEach((s,i)=>(ISOPT(s)?opts:main).push([s,i+1]));
