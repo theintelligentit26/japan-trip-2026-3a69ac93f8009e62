@@ -108,7 +108,7 @@ function rates(x){const g=x.g,t=x.ta;let h='';
  h+=g&&g.rating?`<a class="pill g" href="${esc(g.rv||g.place)}" target="_blank" rel="noopener">Google ★ ${g.rating} · ${fmt(g.count)} reviews</a>`:'<span class="pill nv">Google: not verified</span>';
  h+=t&&(t.rating||t.count)?`<a class="pill ta" href="${esc(t.url)}" target="_blank" rel="noopener" title="${esc(t.note)}">Tripadvisor ${t.rating?'● '+t.rating:'(rating not shown)'}${t.count?' · '+fmt(t.count)+' reviews':''}</a>`:t?`<a class="pill nv" href="${esc(t.url)}" target="_blank" rel="noopener" title="${esc(t.note)}">Tripadvisor: rating not shown</a>`:'<span class="pill nv">Tripadvisor: not verified</span>';
  return h}
-function tabs(cur){let h=`<a class="tab ${cur=='ov'?'on':''}" href="#ov">Overview</a><a class="tab ${cur=='book'?'on':''}" href="#book">✓ Book</a><a class="tab" href="breakfast.html">☕ Breakfast options</a>`;
+function tabs(cur){let h=`<a class="tab ${cur=='ov'?'on':''}" href="#ov">Overview</a><a class="tab ${cur=='book'?'on':''}" href="#book">✓ Book</a><a class="tab" href="breakfast.html">☕ Breakfast options</a><a class="tab" href="places.html">📌 Saved places</a>`;
  DATA.days.forEach(d=>{h+=`<a class="tab ${d.city} ${cur==d.id?'on':''}" href="#${d.id}"><span class="dot" style="background:var(--c)"></span>${d.dow} ${d.date.split(' ').pop()}</a>`});$('#tabs').innerHTML=h;
  const on=$('#tabs .on');if(on)on.scrollIntoView({inline:'center',block:'nearest'});}
 function wxline(d){const w=d.weather;if(!w)return '';const ls=DATA.wx.links[w.city]||[];
