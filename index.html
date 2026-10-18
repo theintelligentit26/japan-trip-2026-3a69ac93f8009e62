@@ -93,6 +93,8 @@ details.stop .sc{border-top-left-radius:0;border-top-right-radius:0}
 .gopts{margin-top:8px}.gopts>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;min-height:48px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#faf9f6;font-size:15px;font-weight:700;color:var(--ink)}.gopts>summary::-webkit-details-marker{display:none}.gopts[open]>summary .car{transform:rotate(90deg)}.gopts .car{display:inline-block;transition:transform .15s;color:var(--mut)}
 
 /* simplify (Oct 19) */
+.mkb{float:right;display:flex;gap:6px;align-items:center;margin:0 0 6px 8px}.mkb button{font-size:12px;padding:3px 10px;border:1px solid #e3dfd6;border-radius:999px;background:#fff;color:#777}.tag-mk{font-size:12px;color:#9b2c2c}
+.tog{font-size:13px;color:#777;display:flex;gap:6px;align-items:center;margin:18px 0 6px}.hid{border-top:1px solid #ebe7e0}.hid summary{cursor:pointer;padding:12px 0;color:#777}.hid .row{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid #f1eee8;font-size:14.5px}.hid .row button{font-size:12px;padding:3px 10px;border:1px solid #e3dfd6;border-radius:999px;background:#fff}
 .mybk .f a{display:inline;padding:0;border:0;color:#1a5fb4;text-decoration:underline}
 #tabs{display:block!important;padding:4px 16px 10px!important;overflow:visible!important}#dayPick{width:100%;font-size:16px;padding:10px 8px;border:1px solid #d9d3c8;border-radius:10px;background:#fff;color:#1f1f1f}.tlinks{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;font-size:14px}.tlinks a{color:#666;text-decoration:none}
 .donelink{margin:30px 0 10px;font-size:14px}.donelink a{color:#777}
@@ -159,7 +161,7 @@ function bkHTML(b){return `<div class="bk"><b>${L(b.name,b.url)}</b> <span class
 function stopHTML(s,i){if(s.href)return `<div class="stop" data-n="${i}" id="${DID}-s${i}"><a class="bigbtn" href="${esc(s.href)}">☕ ${esc(s.t)} ${esc(s.n)} →</a></div>`;const r=s.r;const ph=s.photo;const bare=!r&&!s.hours&&!s.price&&!s.book&&!s.pay;
  return `<details class="stop ${s.cat=='move'?'move':''}" data-n="${i}" id="${DID}-s${i}"><summary><span class="tm">${esc(s.t)}</span><span>${ICO(s)} ${esc(s.n)}${ISBOOKED(s)?'<span class="bdg ok">Booked ✅</span>':''}${ISOPT(s)?'<span class="bdg op">optional</span>':''}</span></summary><div class="time">${esc(s.t)} ${s.opt?'<span class="pill">optional</span>':''}${s.outdoor?'<span class="pill">☀ outdoor</span>':''}</div>
  <div class="sc ${ph?'':'nophoto'}">${ph?`<div class="ph"><img src="${ph.src}" alt="${esc(s.n)}" loading="lazy">${s.rep?'<span class="rep">Representative photo — not this exact place</span>':''}${cred(ph)}</div>`:''}
- <div class="bd"><h3>${esc(s.n)}${s.jp?`<span class="jp">${esc(s.jp)}</span>`:''}</h3>
+ <div class="bd">${CURD&&!s.href?(()=>{const st=(MK()[SID(CURD,s)]||{}).s;return `<div class="mkb">${st?`<span class="tag-mk">${st=='done'?'Done':'Skipped'}</span><button data-mk="" data-sid="${SID(CURD,s)}">Undo</button>`:`<button data-mk="done" data-sid="${SID(CURD,s)}" data-n="${esc(s.n)}">Done</button><button data-mk="skip" data-sid="${SID(CURD,s)}" data-n="${esc(s.n)}">Skip</button>`}</div>`})():''}<h3>${esc(s.n)}${s.jp?`<span class="jp">${esc(s.jp)}</span>`:''}</h3>
  ${s.cat!='move'?`<div class="rates">${r?`<a class="pill rate" href="${r.url}" target="_blank" rel="noopener">Tabelog ★ ${esc(r.rating)} · ${fmt(r.reviews)} reviews</a>`:''}${rates(s)}${r&&/CASH ONLY/.test(r.pay)?'<span class="pill cash">cash only</span>':''}${r?`<span class="pill">${esc(r.cat)}</span>`:''}</div>`:''}
  ${s.what?`<div class="f"><b>What</b> ${esc(s.what)}</div>`:''}${s.why?`<div class="f"><b>Why</b> ${esc(s.why)}</div>`:''}${s.do?`<div class="f"><b>${s.cat=='food'||s.cat=='bar'?'Order':'Do'}</b> ${esc(s.do)}</div>`:''}
  ${bare?"":`<div class="facts"><div><b>Hours this day</b>${esc(s.hours||'not verified')}</div><div><b>Price</b>${esc(s.price||(r?r.budget:'not verified'))}${r&&s.price?'<br><span class=mut>Tabelog budget: '+esc(r.budget)+'</span>':''}</div><div><b>Booking</b>${esc(s.book||'not verified')}${s.book_url?' · '+L('book →',s.book_url):''}</div><div><b>Payment</b>${esc(s.pay||'not verified')}</div>${r?`<div><b>Address</b>${esc(r.addr)}</div><div><b>Phone</b>${esc(r.tel||'—')}</div>`:''}</div>`}
@@ -180,6 +182,8 @@ const ICO=s=>{const n=s.n;if(s.href)return '☕';if(s.cat=='move'){if(/JL\d|flig
  if(/samurai|ninja|kabuki|show|festival|Godzilla/i.test(n))return '🎭';if(s.cat=='bar')return '🍸';if(s.cat=='shop')return '🛍️';if(s.cat=='food')return /coffee|café|cafe|tea|fuglen|bakery/i.test(n)?'☕':'🍽️';return '📍'};
 const PAST=d=>{const n=+String(d.id).slice(1);const t=new Date(Date.now()+9*36e5);return t.getUTCFullYear()>2026||t.getUTCMonth()>9||(t.getUTCMonth()==9&&n<t.getUTCDate())};
 const UP=()=>DATA.days.filter(d=>!PAST(d)),PASTD=()=>DATA.days.filter(PAST);
+const MKK='jp-mark';const MK=()=>JSON.parse(localStorage.getItem(MKK)||'{}');const SID=(d,s)=>'s:'+d.id+':'+String(s.n).toLowerCase().replace(/[^a-z0-9]+/g,'-').slice(0,50);
+const MKD=(d,s)=>!SHOWH&&!s.href&&!!MK()[SID(d,s)];let SHOWH=false;
 const ISBOOKED=s=>/^BOOKED/i.test(s.book||'')||s.book=='Booked';
 const ISOPT=s=>!!(s.opt||/\balt\b/.test(s.t||'')||/Optional\W+not booked/i.test(s.n));
 const HOTEL=c=>{const h=DATA.hotels.find(x=>x.city==c);return h?h.name+', '+h.addr:c};
@@ -194,24 +198,31 @@ function legHTML(a,b,d){if(a.href||b.href)return '';if(b.leg)return `<a class="l
 function glRow(s,i,d,o){return `<a class="gl ${o?'o':''}" ${s.href?`href="${esc(s.href)}"`:`href="#${d.id}" data-go="${d.id}-s${i}"`}><span class="tm">${esc(String(s.t).replace(/\s*alt$/,''))}</span><span class="ic">${ICO(s)}</span><span class="nm">${s.href?esc(s.n)+' <u style="color:#1a73e8">→</u>':esc(SHORT(s.n))}${ISBOOKED(s)?'<span class="bdg ok">Booked ✅</span>':''}${o?'<span class="bdg op">optional</span>':''}</span><span class="go">›</span></a>`}
 function glance(d){const w=d.weather;let x=`<div class="card glance">`;
  if(w)x+=`<div class="gwx">${ICON(w.cond)} <b>${w.hi}°/${w.lo}°C · rain ${esc(w.pop)}</b> <span class="mut">${esc(w.cond)}</span></div>`;
- const main=[],opts=[];d.stops.forEach((s,i)=>(ISOPT(s)?opts:main).push([s,i+1]));
+ const main=[],opts=[];d.stops.forEach((s,i)=>{if(MKD(d,s))return;(ISOPT(s)?opts:main).push([s,i+1])});
  main.forEach(([s,i],k)=>{if(k>0)x+=legHTML(main[k-1][0],s,d);else if(s.leg)x+=`<a class="leg" href="${esc(DIR(s.leg.from||HOTEL(d.city),s.leg.to))}" target="_blank" rel="noopener">${esc(s.leg.txt)} · <u>directions</u></a>`;x+=glRow(s,i,d,false)});
  if(d.xleg)x+=`<div class="leg" style="padding-left:0">${esc(d.xleg.txt)} ${srcs(d.xleg.src)}</div>`;
  if(opts.length){x+=`<details class="gopts"><summary>Options (${opts.length}) <span class="car">▸</span></summary>`+opts.map(([s,i])=>glRow(s,i,d,true)).join('')+`</details>`}
  const ls=d.stops.filter(s=>s.leg).map(s=>s.leg.src).flat();
  x+=`<div class="glnote">Tap a line for details. Distances are straight-line between stops; tap a 🚶/🚇 line for live transit times & fares on Google Maps. USD at ¥158/$1 (open.er-api.com, Oct 17).${ls.length?' Transit sources: '+ls.map(z=>L(z[0],z[1])).join(' · '):''}</div></div>`;return x}
 function heads(d){const pr=s=>ISBOOKED(s)&&s.cat!='move'?0:/sight/.test(s.cat)?1:s.cat=='food'?2:s.cat=='bar'?3:s.cat=='shop'?4:5;
- return d.stops.filter(s=>!s.href&&!ISOPT(s)&&!(s.cat=='move'&&!TRIP(s))&&!/Before leaving/.test(s.t)).map((s,i)=>[s,i]).sort((a,b)=>pr(a[0])-pr(b[0])||a[1]-b[1]).slice(0,3).sort((a,b)=>a[1]-b[1]).map(([s])=>esc(SHORT(s.n))+(ISBOOKED(s)&&s.cat!='move'?' <span class="bdg ok">Booked ✅</span>':'')).join(' · ')}
+ return d.stops.filter(s=>!MKD(d,s)&&!s.href&&!ISOPT(s)&&!(s.cat=='move'&&!TRIP(s))&&!/Before leaving/.test(s.t)).map((s,i)=>[s,i]).sort((a,b)=>pr(a[0])-pr(b[0])||a[1]-b[1]).slice(0,3).sort((a,b)=>a[1]-b[1]).map(([s])=>esc(SHORT(s.n))+(ISBOOKED(s)&&s.cat!='move'?' <span class="bdg ok">Booked ✅</span>':'')).join(' · ')}
 function tripGlance(){return `<h2 style="margin-top:6px">Trip at a glance <small>一覧</small></h2><div class="card tg" style="padding:0;overflow:hidden">${UP().map(d=>`<a class="${d.city}" href="#${d.id}"><span class="dt">${d.dow} ${d.date.split(' ').pop()}<small>${d.city}</small></span><span class="hl"><b>${esc(d.title)}</b>${heads(d)}</span></a>`).join('')}</div>`}
 document.addEventListener('click',e=>{const a=e.target.closest('[data-go]');if(!a)return;const el=document.getElementById(a.dataset.go);if(!el)return;e.preventDefault();el.open=true;el.scrollIntoView({behavior:'smooth',block:'start'});
  const hd=document.querySelector('header');if(hd)setTimeout(()=>window.scrollBy(0,-hd.offsetHeight-6),350);if(el.querySelector('iframe'))0});
+function hidList(d){const m=MK();const it=d.stops.map(s=>[s,m[SID(d,s)]]).filter(([s,v])=>v&&!s.href);let x=`<label class="tog"><input type="checkbox" id="showH" ${SHOWH?'checked':''}> Show hidden (done/skipped) items</label>`;
+ for(const [k,l] of [['done','Marked done'],['skip','Skipped']]){const a=it.filter(([s,v])=>v.s==k);if(a.length)x+=`<details class="hid"><summary>${l} (${a.length})</summary>${a.map(([s])=>`<div class="row"><span>${esc(s.t)} · ${esc(SHORT(s.n))}</span><button data-mk="" data-sid="${SID(d,s)}">Undo</button></div>`).join('')}</details>`}
+ return x+`<p class="mut" style="font-size:12.5px">Done/Skip marks are saved on this device and browser only — they don’t sync between phones.</p>`}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-mk]');if(!b||!b.dataset.sid)return;e.preventDefault();e.stopPropagation();const m=MK();if(b.dataset.mk)m[b.dataset.sid]={s:b.dataset.mk,n:b.dataset.n||'',t:Date.now(),day:DID};else delete m[b.dataset.sid];localStorage.setItem(MKK,JSON.stringify(m));const y=scrollY;rerender();window.scrollTo(0,y)},true);
+document.addEventListener('change',e=>{if(e.target.id=='showH'){SHOWH=e.target.checked;const y=scrollY;rerender();window.scrollTo(0,y)}});
+function rerender(){const id=(location.hash||'#ov').slice(1);const d=DATA.days.find(z=>z.id==id);CURD=null;$('#app').innerHTML=d?day(d):(id=='book'?`<h2>Booking checklist <small>予約</small></h2>`+checklist(true):overview());if(d)drawMap(d);bindChk()}
 function toggleAll(b){const ds=document.querySelectorAll('details.stop');const op=[...ds].some(x=>!x.open);ds.forEach(x=>x.open=op);b.textContent=op?'Collapse all':'Expand all'}
-let DID="";function day(d){DID=d.id;const h=d.hero;let x=`<div class="hero sm ${d.city}" style="border-bottom:6px solid var(--c)">${h?`<img src="${h.src}" alt="">${cred(h).replace('class="cr"','class="cr"')}`:''}<div class="t"><div class="k">${d.date} · ${d.city}</div><h1>${esc(d.title)}</h1></div></div>`;
+let DID="",CURD=null;function day(d){DID=d.id;CURD=d;const h=d.hero;let x=`<div class="hero sm ${d.city}" style="border-bottom:6px solid var(--c)">${h?`<img src="${h.src}" alt="">${cred(h).replace('class="cr"','class="cr"')}`:''}<div class="t"><div class="k">${d.date} · ${d.city}</div><h1>${esc(d.title)}</h1></div></div>`;
  x+=glance(d)+`<p style="font-size:16px">${esc(d.summary)}</p>`+wxline(d)+`<div class="rain"><b>☂ IF IT RAINS — day plan</b><br>${esc(d.rain)}</div>`;
  const pts=d.stops.filter(s=>s.ll&&s.ll[0]);if(pts.length>1){const o=pts[0].ll.join(','),de=pts[pts.length-1].ll.join(','),w=pts.slice(1,-1).slice(0,8).map(s=>s.ll.join(',')).join('|');
   x+=`<div id="daymap"></div>`;
   x+=`<p><a class="btn p" href="https://www.google.com/maps/dir/?api=1&origin=${o}&destination=${de}${w?'&waypoints='+encodeURIComponent(w):''}&travelmode=transit" target="_blank">🗺 Open today's route in Google Maps</a> <span class=mut>Map: numbered stops in timeline order.</span></p>`}
- x+=`<div class="dethd"><h2 style="margin:18px 0 6px">Details <small>詳細</small></h2><button onclick="toggleAll(this)">Expand all</button></div><div class="tl">${d.stops.map((s,i)=>stopHTML(s,i+1)).join('')}</div>`;
+ x+=`<div class="dethd"><h2 style="margin:18px 0 6px">Details <small>詳細</small></h2><button onclick="toggleAll(this)">Expand all</button></div><div class="tl">${d.stops.map((s,i)=>MKD(d,s)?'':stopHTML(s,i+1)).join('')}</div>`;
+ x+=hidList(d);
  const i=DATA.days.indexOf(d);x+=`<p style="display:flex;justify-content:space-between">${i>0?`<a class="btn" href="#${DATA.days[i-1].id}">← ${DATA.days[i-1].date}</a>`:'<span></span>'}${i<DATA.days.length-1?`<a class="btn" href="#${DATA.days[i+1].id}">${DATA.days[i+1].date} →</a>`:''}</p>`;
  return x}
 let MAP=null;
@@ -224,6 +235,6 @@ function drawMap(d){const el=document.getElementById('daymap');const LF=window.L
  MAP.fitBounds(LF.latLngBounds(pts.map(p=>p[0])).pad(0.15));}
 function route(){const id=(location.hash||'#ov').slice(1);const d=DATA.days.find(z=>z.id==id);
  document.body.className=d?d.city:'';tabs(d?id:id=='book'?'book':'ov');
- $('#app').innerHTML=d?day(d):(id=='book'?`<h2>Booking checklist <small>予約</small></h2>`+checklist(true):overview());if(d)drawMap(d);bindChk();window.scrollTo(0,0)}
+ CURD=null;$('#app').innerHTML=d?day(d):(id=='book'?`<h2>Booking checklist <small>予約</small></h2>`+checklist(true):overview());if(d)drawMap(d);bindChk();window.scrollTo(0,0)}
 window.onhashchange=route;route();
 </script></body></html>
