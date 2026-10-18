@@ -221,13 +221,13 @@ document.addEventListener('click',e=>{const a=e.target.closest('[data-go]');if(!
 
 const SUGD=JSON.parse(document.getElementById('sug').textContent);
 const SCATS=[['see','Attractions'],['food','Food'],['shop','Shops'],['do','Things to do'],['tip','Tips']],SFTS=['Breakfast','Lunch','Dinner','Desserts','Snacks','Drinks/Cafés'];
-let SG={day:null,h:'',k:'',f:'',q:''},SGOPEN=false;
+let SG={day:null,h:'',k:'',f:'',q:'',s:''},SGOPEN=false;
 function todayId(){const t=new Date(Date.now()+9*36e5);const id='d'+t.getUTCDate();const up=UP().filter(d=>SUGD.days[d.id]);return (t.getUTCMonth()==9&&SUGD.days[id])?id:(up[0]||{}).id}
-function sugPanel(fixed){if(fixed&&!SUGD.days[fixed])return '';return `<details class="sugp" id="sugp" data-fixed="${fixed||''}" ${SGOPEN?'open':''}><summary>Suggestions near ${fixed?'this day':'a day'} <span>from your social media saves</span></summary><div id="sugBody"></div></details>`}
+function sugPanel(fixed){if(fixed&&!SUGD.days[fixed])return '';return `<details class="sugp" id="sugp" data-fixed="${fixed||''}" ${SGOPEN?'open':''}><summary>Suggestions near ${fixed?'this day':'a day'} <span>Top picks, your saves + Buddy research</span></summary><div id="sugBody"></div></details>`}
 function fillSug(){const p=document.getElementById('sugp');if(!p||!p.open)return;const fixed=p.dataset.fixed;
  if(fixed&&SG.day!=fixed){SG={day:fixed,h:'',k:'',f:'',q:''}}if(!SG.day||!SUGD.days[SG.day])SG.day=todayId();
  const hs=SUGD.days[SG.day]||[];if(SG.h&&!hs.some(x=>x.h==SG.h))SG.h='';
- const mk=MK();const dd0=DATA.days.find(z=>z.id==SG.day);const tag=dd0?dd0.dow+' '+dd0.date.split(' ').pop():'#';const vis=SUGD.items.filter(i=>hs.some(x=>x.h==i.h)&&!mk['p:'+i.id]&&!(/^(In plan|Booked)/.test(i.st)&&i.st.includes(tag)));const nh=vis.length;
+ const mk=MK();const dd0=DATA.days.find(z=>z.id==SG.day);const tag=dd0?dd0.dow+' '+dd0.date.split(' ').pop():'#';const vis=SUGD.items.filter(i=>hs.some(x=>x.h==i.h)&&!mk['p:'+i.id]&&!(/^(In plan|Booked)/.test(i.st)&&i.st.includes(tag))&&(!SG.s||(SG.s=='new'?i.nw:i.w==SG.s)));const nh=new Set(vis.map(i=>i.id)).size;
  const inH=vis.filter(i=>!SG.h||i.h==SG.h);const cc=k=>inH.filter(i=>i.c==k).length;
  const cl=SCATS.filter(([k])=>cc(k));if(!SG.k||!cc(SG.k))SG.k=(cl.find(([k])=>k=='food'&&cc(k))||cl[0]||['food'])[0];
  const fc=f=>inH.filter(i=>i.c=='food'&&(!f||i.f==f)).length;if(SG.f&&!fc(SG.f))SG.f='';
@@ -236,7 +236,8 @@ function fillSug(){const p=document.getElementById('sugp');if(!p||!p.open)return
  const res=inH.filter(i=>i.c==SG.k&&(SG.k!='food'||((!SG.f||i.f==SG.f)&&(!SG.q||i.q==SG.q))));
  const dd=DATA.days.find(z=>z.id==SG.day);
  let x=`<div class="sgsel">${fixed?'':`<label>Day<select data-sg="day">${UP().filter(d=>SUGD.days[d.id]).map(d=>`<option value="${d.id}" ${d.id==SG.day?'selected':''}>${d.dow} ${d.date.split(' ').pop()} · ${d.city}</option>`).join('')}</select></label>`}
- <label>Neighborhood<select data-sg="h"><option value="">All of ${dd?dd.dow+' '+dd.date.split(' ').pop():'this day'}'s areas (${nh})</option>${hs.map(x=>`<option value="${x.h}" ${SG.h==x.h?'selected':''}>${esc(x.hn)}${x.opt?' — optional stop':''} (${vis.filter(i=>i.h==x.h).length})</option>`).join('')}</select></label>
+ <label>Neighborhood<select data-sg="h"><option value="">All of ${dd?dd.dow+' '+dd.date.split(' ').pop():'this day'}'s areas (${nh})</option>${hs.map(x=>`<option value="${x.h}" ${SG.h==x.h?'selected':''}>${esc(x.hn)}${x.opt?' — optional stop':''} (${new Set(vis.filter(i=>i.h==x.h).map(i=>i.id)).size})</option>`).join('')}</select></label>
+ <label>Source<select data-sg="s">${[['','All'],['Hooman','Hooman'],['Buddy','Buddy'],['new','Added Oct 19']].map(([v,l])=>`<option value="${v}" ${SG.s==v?'selected':''}>${l}</option>`).join('')}</select></label>
  <label>Category<select data-sg="k">${cl.map(([k,l])=>`<option value="${k}" ${SG.k==k?'selected':''}>${l} (${cc(k)})</option>`).join('')}</select></label>
  ${SG.k=='food'?`<label>Meal<select data-sg="f"><option value="">All meals (${fc('')})</option>${SFTS.filter(f=>fc(f)).map(f=>`<option ${SG.f==f?'selected':''}>${f}</option>`).join('')}</select></label><label>Cuisine<select data-sg="q"><option value="">All cuisines (${kc('')})</option>${cu.map(q=>`<option ${SG.q==q?'selected':''}>${esc(q)}</option>`).join('')}</select></label>`:''}</div>`;
  const groups=hs.filter(h=>res.some(i=>i.h==h.h));
@@ -245,7 +246,7 @@ function fillSug(){const p=document.getElementById('sugp');if(!p||!p.open)return
  document.getElementById('sugBody').innerHTML=x}
 function sgCard(i,h){const rw=(k,v)=>`<dt>${k}</dt><dd>${v?esc(v):'<i>not found</i>'}</dd>`;
  return `<div class="sgc"><div class="sgtop"><b>${esc(i.n)}</b>${i.m?`<a href="${esc(i.m)}" target="_blank" rel="noopener">Map</a>`:''}</div>${i.o?`<div class="sgone">${i.fl=='warn'?'⚠ ':''}${esc(i.o)}</div>`:''}
- <div class="meta">${i.lab?esc(i.lab)+' · ':''}${esc(i.st)} · ${esc(i.w)}${i.nw?' · <span style="color:#9b2c2c;font-weight:600">New · Oct 19</span>':''}</div><div class="near">near ${esc(h.near[0])}</div>
+ <div class="meta">${i.lab?esc(i.lab)+' · ':''}${esc(i.st)} · ${esc(i.w)}${i.nw?' · <span style="color:#9b2c2c;font-weight:600">Added Oct 19</span>':''}</div><div class="near">near ${esc(h.near[0])}</div>
  <div class="mkb"><button data-pmk="done" data-pid="${i.id}" data-n="${esc(i.n)}">Done</button><button data-pmk="skip" data-pid="${i.id}" data-n="${esc(i.n)}">Skip</button></div>
  <details class="more"><summary>Details</summary><dl>${rw('Hours',i.hrs)}${rw('Price',i.pr)}${rw('Rating',i.rt)}${i.bk?rw('Booking',i.bk):''}${i.note?rw('Note',i.note):''}${i.srcs&&i.srcs.length?`<dt>Sources</dt><dd>${i.srcs.map(x=>`<a href="${esc(x[1])}" target="_blank" rel="noopener">${esc(x[0])}</a>`).join(' · ')}</dd>`:''}</dl>${i.u?`<a href="${esc(i.u)}" target="_blank" rel="noopener">Official page</a>`:'<span class="mut">Official page not found</span>'}</details></div>`}
 document.addEventListener('change',e=>{const k=e.target.dataset&&e.target.dataset.sg;if(!k)return;SG[k]=e.target.value;if(k=='day')SG.h='',SG.k='',SG.f='',SG.q='';if(k=='h')SG.k='',SG.f='',SG.q='';if(k=='k')SG.f='',SG.q='';if(k=='f')SG.q='';fillSug()});
